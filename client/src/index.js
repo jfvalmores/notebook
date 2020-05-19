@@ -4,7 +4,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import * as apiService from './api';
 
-// apiService.initialize();
+import { doWrite } from './api/test';
+
+apiService.initialize();
+doWrite();
 
 ReactDOM.render(
   <React.StrictMode>

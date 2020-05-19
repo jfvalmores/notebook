@@ -3,7 +3,7 @@ import * as firebase from "firebase/app";
 // import "firebase/firestore";
 import "firebase/database";
 
-export function doWrite(userId, name, email, imageUrl) {
+export function doRead() {
   // Create references
   const dbRefObject = firebase.database().ref().child('object');
   const dbRefJournal = dbRefObject.child('journal');
@@ -19,4 +19,14 @@ export function doWrite(userId, name, email, imageUrl) {
 
   // Sync list changes when something is removed
   dbRefJournal.on('child_removed', snap => console.log(snap.val()));
+}
+
+export function doWrite() {
+  var messagesRef = firebase.database().ref('messages');
+  var newMessageRef = messagesRef.push();
+  newMessageRef.set({
+    title: 'Greetings from the Under World',
+    message: 'Hi we come in peace too!',
+    sender: 'Reptilians',
+  });
 }

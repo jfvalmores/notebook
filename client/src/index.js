@@ -4,9 +4,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import * as apiService from './api';
 
-import { doWrite } from './api/test';
+import { doRead, doWrite } from './api/test';
 
 apiService.initialize();
+doRead();
 doWrite();
 
 ReactDOM.render(

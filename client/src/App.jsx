@@ -1,8 +1,13 @@
 import React, { Component } from 'react';
+import styled from 'styled-components';
 import DataGrid from './components/DataGrid';
 import Utils from './utils/Utils';
 
-import Notebook from './api/Notebook';
+import { Notebook } from './api';
+
+const Wrapper = styled.div`
+  color: #37474f !important;
+`;
 
 class App extends Component {
   constructor() {
@@ -22,7 +27,9 @@ class App extends Component {
 
   render() {
     return (
-      <DataGrid list={this.state.notebooks} />
+      <Wrapper>
+        <DataGrid list={this.state.notebooks} />
+      </Wrapper>
     );
   }
 }

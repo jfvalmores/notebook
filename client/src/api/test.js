@@ -21,12 +21,27 @@ export function doRead() {
   dbRefJournal.on('child_removed', snap => console.log(snap.val()));
 }
 
-export function doWrite() {
-  var messagesRef = firebase.database().ref('messages');
-  var newMessageRef = messagesRef.push();
+export function doPush() {
+  const messagesRef = firebase.database().ref('messages');
+  const newMessageRef = messagesRef.push();
   newMessageRef.set({
     title: 'Greetings from the Under World',
     message: 'Hi we come in peace too!',
     sender: 'Reptilians',
   });
+}
+
+export function doUpdate(key) {
+  const id = '-111';
+  const messagesRef = firebase.database().ref(`messages/${id}`);
+  messagesRef.set({
+    title: 'press aaaf',
+    message: '123',
+    sender: 'asd',
+  })
+}
+
+export function doRemove() {
+  const id = '-M7lkvpmtoBA1KsgJxET';
+  firebase.database().ref(`messages/${id}`).remove();
 }

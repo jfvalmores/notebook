@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import DataGrid from './DataGrid';
 import Utils from '../utils/Utils';
-import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
 import styled from 'styled-components';
+import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
+import { AppContext } from '../AppContext';
 
 import { Notebook } from '../api';
 
@@ -12,6 +13,7 @@ const NotebookWrapper = styled.div`
 `;
 
 export default class Notebooks extends Component {
+  static contextType = AppContext;
 
   constructor() {
     super();
@@ -23,16 +25,24 @@ export default class Notebooks extends Component {
 
   componentDidMount() {
     const notebook = new Notebook();
-    notebook.view((data) => {
+    notebook.view('', (data) => {
       this.setState({ notebooks: this.fn.getArrayFromObjectKey(data) });
     });
   }
 
+  setSelected = (notebook) => {
+    const { _id } = notebook;
+    this.context.updateState({ notebook: _id });
+  }
+
   render() {
+    console.log(this.context);
+
     return (
       <NotebookWrapper>
         <DataGrid
           list={this.state.notebooks}
+          onClick={this.setSelected}
           icon={<MenuBookRoundedIcon fontSize="small" />}
         />
       </NotebookWrapper>

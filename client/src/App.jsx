@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Notebooks from './components/Notebooks';
+import { AppContext } from './AppContext';
 
 const Wrapper = styled.div`
   color: #37474f !important;
-  margin: 10px;
+  padding: 10px;
 `;
 
 class App extends Component {
+  state = {
+    notebook: '',
+    section: '',
+    page: '',
+  };
+
+  updateState = (data) => {
+    this.setState({ ...data });
+  }
+
   render() {
     return (
-      <Wrapper>
-        <Notebooks />
-      </Wrapper>
+      <AppContext.Provider value={{ appState: this.state, updateState: this.updateState }}>
+        <Wrapper>
+          <Notebooks />
+        </Wrapper>
+      </AppContext.Provider>
     );
   }
 }

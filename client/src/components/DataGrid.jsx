@@ -21,12 +21,13 @@ class DataGrid extends Component {
             {this.props.list.map(item => (
               <ListItem
                 button
-                key={item._id}>
+                key={item._id}
+                onClick={() => this.props.onClick(item)}
+              >
                 <ListItemIcon>
                   {this.props.icon}
                 </ListItemIcon>
                 <ListItemText primary={item.title} />
-                <ListItemText primary={item.description} />
               </ListItem>
             ))}
           </List>

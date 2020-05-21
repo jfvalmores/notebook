@@ -24,9 +24,9 @@ export default class Base {
       .remove();
   }
 
-  view(fn) {
+  view(id, fn) {
     this.dbRef
-      .ref(this.dbName)
+      .ref(`${this.dbName}/${id}`)
       .on('value', snap => {
         if (fn) fn(snap.val());
       })

@@ -3,7 +3,6 @@ import MenuList from '@material-ui/core/MenuList';
 import MenuItem from '@material-ui/core/MenuItem';
 import Paper from '@material-ui/core/Paper';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
-import SendIcon from '@material-ui/icons/Send';
 import styled from 'styled-components';
 
 const CustomPaper = styled.div`
@@ -19,11 +18,9 @@ class DataGrid extends Component {
             {this.props.list.map(item => (
               <MenuItem key={item._id}>
                 <ListItemIcon>
-                  <SendIcon fontSize="small" />
+                  {this.props.icon}
                 </ListItemIcon>
-                <strong>{item.title}</strong>
-                {' '}
-                <span>{item.description}</span>
+                <strong>{item.title}</strong>{' '}<span>{item.description}</span>
               </MenuItem>
             ))}
           </MenuList>

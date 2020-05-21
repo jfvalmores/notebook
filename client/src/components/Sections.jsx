@@ -10,11 +10,20 @@ const SectionWrapper = styled.div`
 `;
 
 export default class Sections extends Component {
+
+  constructor() {
+    super();
+    this.fn = new Utils();
+    this.state = {
+      sections: []
+    };
+  }
+
   render() {
     return (
       <SectionWrapper>
         <DataGrid
-          list={this.state.notebooks}
+          list={this.state.sections}
           icon={<CollectionsBookmarkRoundedIcon fontSize="small" />}
         />
       </SectionWrapper>

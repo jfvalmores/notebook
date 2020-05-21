@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Notebooks from './components/Notebooks';
+import Sections from './components/Sections';
 import { AppContext } from './AppContext';
 
 const Wrapper = styled.div`
@@ -21,9 +22,13 @@ class App extends Component {
 
   render() {
     return (
-      <AppContext.Provider value={{ appState: this.state, updateState: this.updateState }}>
+      <AppContext.Provider value={{
+        appState: this.state,
+        updateState: this.updateState
+      }}>
         <Wrapper>
           <Notebooks />
+          <Sections />
         </Wrapper>
       </AppContext.Provider>
     );

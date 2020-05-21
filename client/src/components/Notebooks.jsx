@@ -2,8 +2,14 @@ import React, { Component } from 'react';
 import DataGrid from './DataGrid';
 import Utils from '../utils/Utils';
 import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
+import styled from 'styled-components';
 
 import { Notebook } from '../api';
+
+const NotebookWrapper = styled.div`
+  width: 100%;
+  max-width: 360px;
+`;
 
 export default class Notebooks extends Component {
 
@@ -24,10 +30,12 @@ export default class Notebooks extends Component {
 
   render() {
     return (
-      <DataGrid
-        list={this.state.notebooks}
-        icon={<MenuBookRoundedIcon fontSize="small" />}
-      />
+      <NotebookWrapper>
+        <DataGrid
+          list={this.state.notebooks}
+          icon={<MenuBookRoundedIcon fontSize="small" />}
+        />
+      </NotebookWrapper>
     );
   }
 }

@@ -5,9 +5,9 @@ export default class Base {
   dbRef = firebase.database();
   dbName = '';
 
-  create(data) {
+  create(data, id = '') {
     this.dbRef
-      .ref(this.dbName)
+      .ref(`${this.dbName}/${id}`)
       .push()
       .set(data);
   }

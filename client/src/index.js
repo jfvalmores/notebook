@@ -6,7 +6,12 @@ import './index.css';
 import App from './App';
 import * as apiService from './api';
 
+import { Page } from './api';
+
 apiService.initialize();
+
+const page = new Page();
+page.create({ title: 'Page 3' }, "-M7lws_1CrOHzMdowSnt/-M7vvnTmSHLvOsmwbDHN")
 
 ReactDOM.render(
   <React.StrictMode>

@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import { Box } from '@material-ui/core';
 import styled from 'styled-components';
+
 import Notebooks from './components/Notebooks';
 import Sections from './components/Sections';
+import Pages from './components/Pages';
 import { AppContext } from './AppContext';
 
 const Wrapper = styled.div`
@@ -14,6 +17,9 @@ class App extends Component {
     notebook: '',
     section: '',
     page: '',
+    notebooks: [],
+    sections: [],
+    pages: [],
   };
 
   updateState = (data) => {
@@ -27,8 +33,11 @@ class App extends Component {
         updateState: this.updateState
       }}>
         <Wrapper>
-          <Notebooks />
-          <Sections />
+          <Box display="flex">
+            <Notebooks />
+            <Sections />
+            <Pages />
+          </Box>
         </Wrapper>
       </AppContext.Provider>
     );

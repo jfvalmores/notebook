@@ -5,49 +5,47 @@ import styled from 'styled-components';
 import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
 import { AppContext } from '../AppContext';
 
-import { Notebook, Section } from '../api';
+import { Notebook } from '../api';
 
-const NotebookWrapper = styled.div`
+const CanvasWrapper = styled.div`
   width: 100%;
   max-width: 360px;
 `;
 
-export default class Notebooks extends Component {
+export default class Canvas extends Component {
   static contextType = AppContext;
 
   constructor() {
     super();
     this.fn = new Utils();
+    this.state = {
+      notebooks: []
+    };
   }
 
   componentDidMount() {
     const notebook = new Notebook();
     notebook.view('', (data) => {
-      this.context.updateState({ notebooks: this.fn.getArrayFromObjectKey(data) });
+      this.setState({ notebooks: this.fn.getArrayFromObjectKey(data) });
     });
   }
 
   setSelected = (notebook) => {
     const { _id } = notebook;
     this.context.updateState({ notebook: _id });
-
-    const section = new Section();
-    section.view(`/${_id}`, (data) => {
-      this.context.updateState({ sections: this.fn.getArrayFromObjectKey(data), pages: [] });
-    });
   }
 
   render() {
     console.log(this.context);
 
     return (
-      <NotebookWrapper>
+      <CanvasWrapper>
         <DataGrid
-          list={this.context.appState.notebooks}
+          list={this.state.notebooks}
           onClick={this.setSelected}
           icon={<MenuBookRoundedIcon fontSize="small" />}
         />
-      </NotebookWrapper>
+      </CanvasWrapper>
     );
   }
 }

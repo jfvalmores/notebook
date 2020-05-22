@@ -4,7 +4,7 @@ export default class PageContent extends Component {
   render() {
     return (
       <div>
-        {/* Content goes here! */}
+        Page content goes here!
       </div>
     );
   }

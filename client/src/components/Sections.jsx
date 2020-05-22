@@ -9,6 +9,7 @@ import { Section, Page } from '../api';
 
 const SectionWrapper = styled.div`
   width: 100%;
+  margin: 5px;
   max-width: 360px;
 `;
 

@@ -5,10 +5,12 @@ import styled from 'styled-components';
 import Notebooks from './components/Notebooks';
 import Sections from './components/Sections';
 import Pages from './components/Pages';
+import PageContent from './components/PageContent';
 import { AppContext } from './AppContext';
 
 const Wrapper = styled.div`
   color: #37474f !important;
+  background-color: lightgreen;
   padding: 10px;
 `;
 
@@ -37,6 +39,7 @@ class App extends Component {
             <Notebooks />
             <Sections />
             <Pages />
+            <PageContent />
           </Box>
         </Wrapper>
       </AppContext.Provider>

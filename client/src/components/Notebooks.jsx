@@ -9,8 +9,10 @@ import { Notebook, Section } from '../api';
 
 const NotebookWrapper = styled.div`
   width: 100%;
-  margin: 5px;
-  max-width: 360px;
+  margin: 2px;
+  max-height: calc(100vh - 25px);
+  overflow-y: auto;
+  max-width: 250px;
 `;
 
 export default class Notebooks extends Component {

@@ -10,7 +10,6 @@ import { AppContext } from './AppContext';
 
 const Wrapper = styled.div`
   color: #37474f !important;
-  background-color: lightgreen;
   padding: 10px;
 `;
 

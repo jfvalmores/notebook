@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import CollectionsBookmarkRoundedIcon from '@material-ui/icons/CollectionsBookmarkRounded';
 import { AppContext } from '../AppContext';
 
-import { Section, Page } from '../api';
+import { Page } from '../api';
 
 const SectionWrapper = styled.div`
   width: 100%;

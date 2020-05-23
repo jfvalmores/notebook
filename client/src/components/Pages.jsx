@@ -5,8 +5,6 @@ import styled from 'styled-components';
 import BookRoundedIcon from '@material-ui/icons/BookRounded';
 import { AppContext } from '../AppContext';
 
-import { Page } from '../api';
-
 const PageWrapper = styled.div`
   width: 100%;
   margin: 2px;

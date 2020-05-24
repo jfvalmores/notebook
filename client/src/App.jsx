@@ -9,11 +9,6 @@ import PageContent from './components/PageContent';
 import Sidenav from './components/Sidenav';
 import { AppContext } from './AppContext';
 
-const Wrapper = styled.div`
-  color: #37474f !important;
-  padding: 10px;
-`;
-
 class App extends Component {
   state = {
     notebook: '',
@@ -34,15 +29,14 @@ class App extends Component {
         appState: this.state,
         updateState: this.updateState
       }}>
-        <Sidenav />
-        <Wrapper>
+        <Sidenav>
           <Box display="flex">
             <Notebooks />
             <Sections />
             <Pages />
             <PageContent />
           </Box>
-        </Wrapper>
+        </Sidenav>
       </AppContext.Provider>
     );
   }

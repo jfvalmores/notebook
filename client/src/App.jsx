@@ -6,6 +6,7 @@ import Notebooks from './components/Notebooks';
 import Sections from './components/Sections';
 import Pages from './components/Pages';
 import PageContent from './components/PageContent';
+import Sidenav from './components/Sidenav';
 import { AppContext } from './AppContext';
 
 const Wrapper = styled.div`
@@ -33,6 +34,7 @@ class App extends Component {
         appState: this.state,
         updateState: this.updateState
       }}>
+        <Sidenav />
         <Wrapper>
           <Box display="flex">
             <Notebooks />

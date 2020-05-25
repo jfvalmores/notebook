@@ -1,37 +1,32 @@
 import React, { Component } from 'react';
-import { EditorState } from 'draft-js';
-import { Editor } from 'react-draft-wysiwyg';
-import 'react-draft-wysiwyg/dist/react-draft-wysiwyg.css';
+import { Editor } from '@tinymce/tinymce-react';
 
 export default class PageContent extends Component {
-  state = {};
-
-  constructor(props) {
-    super(props);
-    this.state = {
-      editorState: EditorState.createEmpty(),
-    };
+  handleEditorChange = (content, editor) => {
+    console.log('Content was updated:', content);
   }
 
-  onEditorStateChange = (editorState) => {
-    this.setState({
-      editorState,
-    });
-  };
-
   render() {
-    const { editorState } = this.state;
-
+    console.log(process.env.REACT_APP_TINYMCE_KEY);
     return (
-      <div style={{ marginLeft: 10 }}>
-        <Editor
-          editorState={editorState}
-          wrapperClassName="wrapper-class"
-          editorClassName="editor-class"
-          toolbarClassName="toolbar-class"
-          onEditorStateChange={this.onEditorStateChange}
-        />
-      </div>
+      <Editor
+        initialValue="<p>Something, something...</p>"
+        apiKey={process.env.REACT_APP_TINYMCE_KEY}
+        init={{
+          height: 500,
+          menubar: false,
+          plugins: [
+            'advlist autolink lists link image charmap print preview anchor',
+            'searchreplace visualblocks code fullscreen',
+            'insertdatetime media table paste code help wordcount'
+          ],
+          toolbar: `
+            undo redo | formatselect | bold italic backcolor | \
+            alignleft aligncenter alignright alignjustify | \
+            bullist numlist outdent indent | removeformat | help`
+        }}
+        onEditorChange={this.handleEditorChange}
+      />
     );
   }
 }

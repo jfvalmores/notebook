@@ -12,7 +12,3 @@ html, body, #root {
   font-size: 12px;
   overflow-wrap: break-word;
 }
-
-.editor-class.rdw-editor-main {
-  height: calc(100vh - 223px);
-}

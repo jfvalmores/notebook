@@ -117,14 +117,16 @@ export default class BaseGrid extends Component {
         >
           Add {this._title}
         </Button>
-        <DataGrid
-          noWrapper
-          onClick={this.setSelected}
-          actions={['Edit', 'Delete']}
-          handleAction={this.handleAction}
-          list={this.context.appState[this._attrName]}
-          icon={<MenuBookRoundedIcon fontSize="small" />}
-        />
+        {this.context.appState[this._attrName].length > 0 &&
+          <DataGrid
+            noWrapper
+            onClick={this.setSelected}
+            actions={['Edit', 'Delete']}
+            handleAction={this.handleAction}
+            list={this.context.appState[this._attrName]}
+            icon={<MenuBookRoundedIcon fontSize="small" />}
+          />
+        }
         <Modal
           title={this._title}
           open={this.state.openModal}

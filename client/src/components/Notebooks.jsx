@@ -8,10 +8,6 @@ export default class Notebooks extends BaseGrid {
   _detailIntf = new Section();
   _subDetailIntf = new Page();
 
-  constructor() {
-    super();
-  }
-
   setSelected = (notebook) => {
     const { _id } = notebook;
 
@@ -19,7 +15,7 @@ export default class Notebooks extends BaseGrid {
       this.context.updateState({
         notebook: _id,
         section: '',
-        sections: this.fn.getArrayFromObjectKey(data), pages: [],
+        sections: this.fn.getArrayFromObjectKey(data),
         page: '',
         pages: [],
       });

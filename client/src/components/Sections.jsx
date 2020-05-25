@@ -3,14 +3,13 @@ import DataGrid from './DataGrid';
 import Utils from '../utils/Utils';
 import styled from 'styled-components';
 import CollectionsBookmarkRoundedIcon from '@material-ui/icons/CollectionsBookmarkRounded';
+import { Button } from '@material-ui/core';
 import { AppContext } from '../AppContext';
 
 import { Page } from '../api';
 
 const SectionWrapper = styled.div`
   width: 100%;
-  max-height: calc(100vh - 25px);
-  overflow-y: auto;
   max-width: 240px;
 `;
 
@@ -35,12 +34,22 @@ export default class Sections extends Component {
   render() {
     return (
       <SectionWrapper>
-        <DataGrid
-          noWrapper
-          list={this.context.appState.sections}
-          onClick={this.setSelected}
-          icon={<CollectionsBookmarkRoundedIcon fontSize="small" />}
-        />
+        {this.context.appState.sections.length > 0 &&
+          <>
+            <Button
+              size="small"
+              color="primary"
+              startIcon={<CollectionsBookmarkRoundedIcon />}
+            >
+              Add Section
+            </Button>
+            <DataGrid
+              list={this.context.appState.sections}
+              onClick={this.setSelected}
+              icon={<CollectionsBookmarkRoundedIcon fontSize="small" />}
+            />
+          </>
+        }
       </SectionWrapper>
     );
   }

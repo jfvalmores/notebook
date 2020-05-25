@@ -14,9 +14,7 @@ const page = new Page();
 page.create({ title: 'Page 3' }, "-M7lws_1CrOHzMdowSnt/-M7vvnTmSHLvOsmwbDHN")
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
 );
 

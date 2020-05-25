@@ -3,12 +3,11 @@ import DataGrid from './DataGrid';
 import Utils from '../utils/Utils';
 import styled from 'styled-components';
 import BookRoundedIcon from '@material-ui/icons/BookRounded';
+import { Button } from '@material-ui/core';
 import { AppContext } from '../AppContext';
 
 const PageWrapper = styled.div`
   width: 100%;
-  max-height: calc(100vh - 100px);
-  overflow-y: auto;
   max-width: 240px;
 `;
 
@@ -28,12 +27,22 @@ export default class Pages extends Component {
   render() {
     return (
       <PageWrapper>
-        <DataGrid
-          noWrapper
-          list={this.context.appState.pages}
-          onClick={this.setSelected}
-          icon={<BookRoundedIcon fontSize="small" />}
-        />
+        {this.context.appState.pages.length > 0 &&
+          <>
+            <Button
+              size="small"
+              color="primary"
+              startIcon={<BookRoundedIcon />}
+            >
+              Add Page
+            </Button>
+            <DataGrid
+              list={this.context.appState.pages}
+              onClick={this.setSelected}
+              icon={<BookRoundedIcon fontSize="small" />}
+            />
+          </>
+        }
       </PageWrapper>
     );
   }

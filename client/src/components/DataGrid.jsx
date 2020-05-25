@@ -13,26 +13,38 @@ const CustomPaper = styled.div`
 `;
 
 class DataGrid extends Component {
+  renderList = () => (
+    <List style={{ padding: 0 }}>
+      {this.props.list.map(item => (
+        <ListItem
+          button
+          key={item._id}
+          onClick={() => this.props.onClick(item)}
+        >
+          <ListItemIcon>
+            {this.props.icon}
+          </ListItemIcon>
+          <ListItemText primary={item.title} />
+        </ListItem>
+      ))}
+    </List>
+  )
+
   render() {
+    const { noWrapper } = this.props;
+
     return (
-      <Paper>
-        <CustomPaper inheritColor>
-          <List>
-            {this.props.list.map(item => (
-              <ListItem
-                button
-                key={item._id}
-                onClick={() => this.props.onClick(item)}
-              >
-                <ListItemIcon>
-                  {this.props.icon}
-                </ListItemIcon>
-                <ListItemText primary={item.title} />
-              </ListItem>
-            ))}
-          </List>
-        </CustomPaper>
-      </Paper>
+      <>
+        {noWrapper ?
+          this.renderList()
+          :
+          <Paper>
+            <CustomPaper inheritColor>
+              {this.renderList()}
+            </CustomPaper>
+          </Paper>
+        }
+      </>
     );
   }
 }

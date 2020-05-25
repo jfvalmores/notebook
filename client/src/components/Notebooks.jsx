@@ -1,19 +1,10 @@
 import React, { Component } from 'react';
 import DataGrid from './DataGrid';
 import Utils from '../utils/Utils';
-import styled from 'styled-components';
 import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
 import { AppContext } from '../AppContext';
 
 import { Notebook, Section } from '../api';
-
-const NotebookWrapper = styled.div`
-  width: 100%;
-  margin: 2px;
-  max-height: calc(100vh - 25px);
-  overflow-y: auto;
-  max-width: 250px;
-`;
 
 export default class Notebooks extends Component {
   static contextType = AppContext;
@@ -44,13 +35,12 @@ export default class Notebooks extends Component {
     console.log(this.context);
 
     return (
-      <NotebookWrapper>
-        <DataGrid
-          list={this.context.appState.notebooks}
-          onClick={this.setSelected}
-          icon={<MenuBookRoundedIcon fontSize="small" />}
-        />
-      </NotebookWrapper>
+      <DataGrid
+        noWrapper
+        list={this.context.appState.notebooks}
+        onClick={this.setSelected}
+        icon={<MenuBookRoundedIcon fontSize="small" />}
+      />
     );
   }
 }

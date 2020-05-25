@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Box } from '@material-ui/core';
-import styled from 'styled-components';
 
-import Notebooks from './components/Notebooks';
 import Sections from './components/Sections';
 import Pages from './components/Pages';
 import PageContent from './components/PageContent';
@@ -31,7 +29,6 @@ class App extends Component {
       }}>
         <Sidenav>
           <Box display="flex">
-            <Notebooks />
             <Sections />
             <Pages />
             <PageContent />

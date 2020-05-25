@@ -2,22 +2,16 @@ import React, { Component } from 'react';
 import DataGrid from './DataGrid';
 import Modal from './Modal';
 import Utils from '../utils/Utils';
-import styled from 'styled-components';
-import CollectionsBookmarkRoundedIcon from '@material-ui/icons/CollectionsBookmarkRounded';
-import { Button } from '@material-ui/core';
+import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
 import { AppContext } from '../AppContext';
+import { Button } from '@material-ui/core';
 
-import { Section, Page } from '../api';
-
-const SectionWrapper = styled.div`
-  width: 100%;
-  max-width: 240px;
-`;
-
-export default class Sections extends Component {
+export default class BaseGrid extends Component {
   static contextType = AppContext;
-  _mainIntf = new Section();
-  _detailIntf = new Page();
+  _attrName = '';
+  _title = '';
+  _mainIntf;
+  _detailIntf;
 
   constructor() {
     super();
@@ -35,23 +29,8 @@ export default class Sections extends Component {
   }
 
   getList = () => {
-    if (String(this.props.reqPath) === '') return;
-
-    this._mainIntf.view(this.props.reqPath, (data) => {
-      this.context.updateState({ sections: this.fn.getArrayFromObjectKey(data) });
-    });
-  }
-
-  setSelected = (section) => {
-    const { _id } = section;
-    this.context.updateState({ section: _id });
-
-    this._detailIntf.view(`${this.props.reqPath}/${_id}`, (data) => {
-      this.context.updateState({
-        section: _id,
-        page: '',
-        pages: this.fn.getArrayFromObjectKey(data)
-      });
+    this._mainIntf.view('', (data) => {
+      this.context.updateState({ [this._attrName]: this.fn.getArrayFromObjectKey(data) });
     });
   }
 
@@ -59,14 +38,7 @@ export default class Sections extends Component {
     if (!this.validateForm(data)) return;
     this._mainIntf.create(data, `${this.props.reqPath}`);
     this.closeModalForm();
-  }
-
-  closeModalForm = () => {
-    this.setState({ openModal: false });
-  }
-
-  openModalForm = () => {
-    this.setState({ openModal: true })
+    this.doPostSave();
   }
 
   handleUpdate = (data) => {
@@ -90,11 +62,22 @@ export default class Sections extends Component {
         break;
       case 'DELETE':
         this._mainIntf.remove(`${this.props.reqPath}/${detail._id}`);
+        this.doPostRemove(detail._id);
         break;
       default:
         break;
     }
   }
+
+  doPostSave = () => {
+    this.cleanUp();
+  }
+
+  doPostRemove = (id) => {
+    this.cleanUp();
+  }
+
+  cleanUp = () => { }
 
   handleChange = (e) => {
     const { id, value } = e.target;
@@ -114,30 +97,36 @@ export default class Sections extends Component {
     return true;
   }
 
+  closeModalForm = () => {
+    this.setState({ openModal: false });
+  }
+
+  openModalForm = () => {
+    this.setState({ openModal: true })
+  }
+
   render() {
     return (
-      <SectionWrapper>
+      <>
         <Button
           size="small"
           color="primary"
           style={{ margin: 9 }}
           onClick={this.handleNewEntry}
-          startIcon={<CollectionsBookmarkRoundedIcon />}
+          startIcon={<MenuBookRoundedIcon />}
         >
-          Add Section
-          </Button>
-        {this.context.appState.sections.length > 0 &&
-          <DataGrid
-            noWrapper
-            onClick={this.setSelected}
-            actions={['Edit', 'Delete']}
-            handleAction={this.handleAction}
-            list={this.context.appState.sections}
-            icon={<CollectionsBookmarkRoundedIcon fontSize="small" />}
-          />
-        }
+          Add {this._title}
+        </Button>
+        <DataGrid
+          noWrapper
+          onClick={this.setSelected}
+          actions={['Edit', 'Delete']}
+          handleAction={this.handleAction}
+          list={this.context.appState[this._attrName]}
+          icon={<MenuBookRoundedIcon fontSize="small" />}
+        />
         <Modal
-          title="Section"
+          title={this._title}
           open={this.state.openModal}
           handleSave={this.handleSave}
           selected={this.state.selected}
@@ -145,7 +134,7 @@ export default class Sections extends Component {
           handleChange={this.handleChange}
           handleCancel={this.closeModalForm}
         />
-      </SectionWrapper>
+      </>
     );
   }
 }

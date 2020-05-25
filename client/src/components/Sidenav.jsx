@@ -108,7 +108,7 @@ export default function Sidenav(props) {
           paper: classes.drawerPaper,
         }}
       >
-        <Notebooks />
+        <Notebooks reqPath="" />
       </Drawer>
       <main
         className={clsx(classes.content, {

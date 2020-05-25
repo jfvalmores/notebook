@@ -29,8 +29,12 @@ class App extends Component {
       }}>
         <Sidenav>
           <Box display="flex">
-            <Sections />
-            <Pages />
+            {this.state.notebook &&
+              <Sections reqPath={`${this.state.notebook}`} />
+            }
+            {this.state.section &&
+              <Pages reqPath={`${this.state.notebook}/${this.state.section}`} />
+            }
             <PageContent />
           </Box>
         </Sidenav>

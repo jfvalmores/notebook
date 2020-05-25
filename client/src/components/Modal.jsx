@@ -16,6 +16,17 @@ export default class FormDialog extends Component {
     };
   }
 
+  handleKeyPress = e => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      if (this.props.selected._id) {
+        this.props.handleUpdate(this.props.selected);
+      } else {
+        this.props.handleSave(this.props.selected);
+      }
+    }
+  }
+
   render() {
     return (
       <Dialog
@@ -36,6 +47,7 @@ export default class FormDialog extends Component {
             label="Title"
             margin="dense"
             value={this.props.selected.title}
+            onKeyPress={this.handleKeyPress}
             onChange={this.props.handleChange}
             inputProps={{
               maxLength: 64,

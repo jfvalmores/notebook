@@ -21,10 +21,10 @@ class DataGrid extends Component {
           key={item._id}
           onClick={() => this.props.onClick(item)}
         >
-          <ListItemIcon>
+          <ListItemIcon style={{ minWidth: 25 }}>
             {this.props.icon}
           </ListItemIcon>
-          <ListItemText primary={item.title} />
+          <ListItemText primary={item.title} classes={{ root: 'list-item' }} />
         </ListItem>
       ))}
     </List>

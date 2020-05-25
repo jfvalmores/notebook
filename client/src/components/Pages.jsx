@@ -7,10 +7,9 @@ import { AppContext } from '../AppContext';
 
 const PageWrapper = styled.div`
   width: 100%;
-  margin: 2px;
-  max-height: calc(100vh - 25px);
+  max-height: calc(100vh - 100px);
   overflow-y: auto;
-  max-width: 250px;
+  max-width: 240px;
 `;
 
 export default class Pages extends Component {
@@ -30,6 +29,7 @@ export default class Pages extends Component {
     return (
       <PageWrapper>
         <DataGrid
+          noWrapper
           list={this.context.appState.pages}
           onClick={this.setSelected}
           icon={<BookRoundedIcon fontSize="small" />}

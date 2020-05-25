@@ -9,10 +9,9 @@ import { Page } from '../api';
 
 const SectionWrapper = styled.div`
   width: 100%;
-  margin: 2px;
   max-height: calc(100vh - 25px);
   overflow-y: auto;
-  max-width: 250px;
+  max-width: 240px;
 `;
 
 export default class Sections extends Component {
@@ -37,6 +36,7 @@ export default class Sections extends Component {
     return (
       <SectionWrapper>
         <DataGrid
+          noWrapper
           list={this.context.appState.sections}
           onClick={this.setSelected}
           icon={<CollectionsBookmarkRoundedIcon fontSize="small" />}

@@ -35,6 +35,7 @@ export default class Notebooks extends BaseGrid {
       sections: [],
       page: '',
       pages: [],
+      content: '',
     });
   }
 }

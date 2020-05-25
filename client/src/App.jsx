@@ -12,6 +12,8 @@ class App extends Component {
     notebook: '',
     section: '',
     page: '',
+    title: '',
+    content: '',
     notebooks: [],
     sections: [],
     pages: [],
@@ -22,6 +24,10 @@ class App extends Component {
   }
 
   render() {
+    const showSections = Boolean(this.state.notebook);
+    const showPages = Boolean(this.state.notebook && this.state.section);
+    const showEditor = Boolean(this.state.notebook && this.state.section && this.state.page);
+
     return (
       <AppContext.Provider value={{
         appState: this.state,
@@ -29,13 +35,15 @@ class App extends Component {
       }}>
         <Sidenav>
           <Box display="flex">
-            {this.state.notebook &&
+            {showSections &&
               <Sections reqPath={`${this.state.notebook}`} />
             }
-            {this.state.section &&
+            {showPages &&
               <Pages reqPath={`${this.state.notebook}/${this.state.section}`} />
             }
-            <PageContent />
+            {showEditor &&
+              <PageContent />
+            }
           </Box>
         </Sidenav>
       </AppContext.Provider>

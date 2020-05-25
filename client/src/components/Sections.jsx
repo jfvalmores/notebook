@@ -1,44 +1,18 @@
-import React, { Component } from 'react';
-import DataGrid from './DataGrid';
-import Modal from './Modal';
-import Utils from '../utils/Utils';
-import styled from 'styled-components';
-import CollectionsBookmarkRoundedIcon from '@material-ui/icons/CollectionsBookmarkRounded';
-import { Button } from '@material-ui/core';
-import { AppContext } from '../AppContext';
-
+import BaseGrid from './BaseGrid';
 import { Section, Page } from '../api';
 
-const SectionWrapper = styled.div`
-  width: 100%;
-  max-width: 240px;
-`;
-
-export default class Sections extends Component {
-  static contextType = AppContext;
+export default class Sections extends BaseGrid {
+  _title = 'Section';
+  _attrName = 'sections';
   _mainIntf = new Section();
   _detailIntf = new Page();
-
-  constructor() {
-    super();
-    this.fn = new Utils();
-    this.state = {
-      openModal: false,
-      selected: {
-        title: '',
-      },
-    }
-  }
-
-  componentDidMount() {
-    this.getList();
-  }
+  _hasCustomWrapper = true;
 
   getList = () => {
-    if (String(this.props.reqPath) === '') return;
+    if (String(this.context.appState.notebook) === '') return;
 
-    this._mainIntf.view(this.props.reqPath, (data) => {
-      this.context.updateState({ sections: this.fn.getArrayFromObjectKey(data) });
+    this._mainIntf.view(`${this.props.reqPath}`, (data) => {
+      this.context.updateState({ [this._attrName]: this.fn.getArrayFromObjectKey(data) });
     });
   }
 
@@ -55,97 +29,17 @@ export default class Sections extends Component {
     });
   }
 
-  handleSave = (data) => {
-    if (!this.validateForm(data)) return;
-    this._mainIntf.create(data, `${this.props.reqPath}`);
-    this.closeModalForm();
+  doPostRemove = (id) => {
+    this._detailIntf.remove(`${this.props.reqPath}/${id}`);
+    this.cleanUp();
   }
 
-  closeModalForm = () => {
-    this.setState({ openModal: false });
-  }
-
-  openModalForm = () => {
-    this.setState({ openModal: true })
-  }
-
-  handleUpdate = (data) => {
-    if (!this.validateForm(data)) return;
-    this._mainIntf.update(`${this.props.reqPath}/${data._id}`, data);
-    this.closeModalForm();
-  }
-
-  handleNewEntry = () => {
-    this.setState({ selected: { title: '' } })
-    this.openModalForm();
-  }
-
-  handleAction = (action, detail) => {
-    switch (String(action).toUpperCase()) {
-      case 'EDIT':
-        this.setState({ selected: detail }, (state) => {
-          console.log(this.state);
-          this.openModalForm();
-        });
-        break;
-      case 'DELETE':
-        this._mainIntf.remove(`${this.props.reqPath}/${detail._id}`);
-        break;
-      default:
-        break;
-    }
-  }
-
-  handleChange = (e) => {
-    const { id, value } = e.target;
-    this.setState({
-      selected: {
-        ...this.state.selected,
-        [id]: value,
-      }
+  cleanUp = () => {
+    this.context.updateState({
+      section: '',
+      page: '',
+      pages: [],
+      content: '',
     });
-  }
-
-  validateForm = (data) => {
-    if (String(data.title) === '') {
-      return false;
-    }
-
-    return true;
-  }
-
-  render() {
-    return (
-      <SectionWrapper>
-        <Button
-          size="small"
-          color="primary"
-          style={{ margin: 9 }}
-          onClick={this.handleNewEntry}
-          startIcon={<CollectionsBookmarkRoundedIcon />}
-        >
-          Add Section
-          </Button>
-        {this.context.appState.sections.length > 0 &&
-          <DataGrid
-            noWrapper
-            onClick={this.setSelected}
-            actions={['Edit', 'Delete']}
-            handleAction={this.handleAction}
-            list={this.context.appState.sections}
-            icon={<CollectionsBookmarkRoundedIcon fontSize="small" />}
-          />
-        }
-        <Modal
-          title="Section"
-          open={this.state.openModal}
-          handleSave={this.handleSave}
-          selected={this.state.selected}
-          handleUpdate={this.handleUpdate}
-          handleChange={this.handleChange}
-          handleCancel={this.closeModalForm}
-        />
-      </SectionWrapper>
-    );
   }
 }

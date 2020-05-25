@@ -2,9 +2,15 @@ import React, { Component } from 'react';
 import DataGrid from './DataGrid';
 import Modal from './Modal';
 import Utils from '../utils/Utils';
+import styled from 'styled-components';
 import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
 import { AppContext } from '../AppContext';
 import { Button } from '@material-ui/core';
+
+const CustomWrapper = styled.div`
+  width: 100%;
+  max-width: 240px;
+`;
 
 export default class BaseGrid extends Component {
   static contextType = AppContext;
@@ -12,6 +18,7 @@ export default class BaseGrid extends Component {
   _title = '';
   _mainIntf;
   _detailIntf;
+  _hasCustomWrapper = false;
 
   constructor() {
     super();
@@ -105,7 +112,7 @@ export default class BaseGrid extends Component {
     this.setState({ openModal: true })
   }
 
-  render() {
+  renderMain() {
     return (
       <>
         <Button
@@ -136,6 +143,22 @@ export default class BaseGrid extends Component {
           handleChange={this.handleChange}
           handleCancel={this.closeModalForm}
         />
+      </>
+    );
+  }
+
+  render() {
+    if (this._hasCustomWrapper) {
+      return (
+        <CustomWrapper>
+          {this.renderMain()}
+        </CustomWrapper>
+      );
+    }
+
+    return (
+      <>
+        {this.renderMain()}
       </>
     );
   }

@@ -23,15 +23,14 @@ class DataGrid extends Component {
         <ListItem
           button
           key={item._id}
-          onDoubleClick={() => this.props.onClick(item)}
+          onClick={() => this.props.onClick(item)}
         >
           <ListItemIcon style={{ minWidth: 25 }}>
             {this.props.icon}
           </ListItemIcon>
           <ListItemText
             primary={item.title}
-            classes={{ root: 'list-item' }}
-            onClick={() => this.props.onClick(item)} />
+            classes={{ root: 'list-item' }} />
           <Options
             item={item}
             actions={this.props.actions || []}
@@ -63,11 +62,13 @@ function Options(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const handleClick = (event) => {
-    setAnchorEl(event.currentTarget);
+  const handleClick = (e) => {
+    setAnchorEl(e.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (e) => {
+    e.preventDefault();
+    e.stopPropagation();
     setAnchorEl(null);
   };
 
@@ -99,7 +100,7 @@ function Options(props) {
           <MenuItem
             key={option}
             selected={option === 'Pyxis'}
-            onClick={() => { handleClose(); props.handleAction(option, props.item) }}>
+            onClick={(e) => { handleClose(e); props.handleAction(option, props.item) }}>
             {option}
           </MenuItem>
         ))}

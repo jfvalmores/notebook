@@ -5,8 +5,8 @@ import CollectionsBookmarkRoundedIcon from '@material-ui/icons/CollectionsBookma
 
 export default class Sections extends BaseGrid {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this._title = 'Section';
     this._attrName = 'sections';

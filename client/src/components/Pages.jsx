@@ -5,8 +5,8 @@ import BookRoundedIcon from '@material-ui/icons/BookRounded';
 
 export default class Pages extends BaseGrid {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this._title = 'Page';
     this._attrName = 'pages';

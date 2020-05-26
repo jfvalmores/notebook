@@ -17,6 +17,7 @@ class App extends Component {
     notebooks: [],
     sections: [],
     pages: [],
+    mode: 'EDIT',
   };
 
   updateState = (data) => {
@@ -33,13 +34,17 @@ class App extends Component {
         appState: this.state,
         updateState: this.updateState
       }}>
-        <Sidenav>
+        <Sidenav notebookId={this.state.notebook}>
           <Box display="flex">
             {showSections &&
-              <Sections reqPath={`${this.state.notebook}`} />
+              <Sections
+                sourceKey={this.state.section}
+                reqPath={`${this.state.notebook}`} />
             }
             {showPages &&
-              <Pages reqPath={`${this.state.notebook}/${this.state.section}`} />
+              <Pages
+                sourceKey={this.state.page}
+                reqPath={`${this.state.notebook}/${this.state.section}`} />
             }
             {showEditor &&
               <PageContent />

@@ -3,8 +3,8 @@ import { Notebook, Section, Page } from '../api';
 
 export default class Notebooks extends BaseGrid {
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this._title = 'Notebook';
     this._attrName = 'notebooks';

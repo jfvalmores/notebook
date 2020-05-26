@@ -109,7 +109,9 @@ export default function Sidenav(props) {
           paper: classes.drawerPaper,
         }}
       >
-        <Notebooks reqPath="" />
+        <Notebooks
+          reqPath=""
+          sourceKey={props.notebookId} />
       </Drawer>
       <main
         className={clsx(classes.content, {

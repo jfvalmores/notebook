@@ -15,8 +15,8 @@ const CustomWrapper = styled.div`
 export default class BaseGrid extends Component {
   static contextType = AppContext;
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
     this.fn = new Utils();
     this._attrName = '';
     this._title = '';
@@ -116,18 +116,21 @@ export default class BaseGrid extends Component {
   renderMain() {
     return (
       <>
-        <Button
-          size="small"
-          color="primary"
-          style={{ margin: 9 }}
-          onClick={this.handleNewEntry}
-          startIcon={this._icon || <MenuBookRoundedIcon fontSize="small" />}
-        >
-          Add {this._title}
-        </Button>
+        {this.context.appState.mode === 'EDIT' &&
+          <Button
+            size="small"
+            color="primary"
+            style={{ margin: 9 }}
+            onClick={this.handleNewEntry}
+            startIcon={this._icon || <MenuBookRoundedIcon fontSize="small" />}
+          >
+            Add {this._title}
+          </Button>
+        }
         {this.context.appState[this._attrName].length > 0 &&
           <DataGrid
             noWrapper
+            sourceKey={this.props.sourceKey}
             onClick={this.setSelected}
             actions={['Edit', 'Delete']}
             handleAction={this.handleAction}

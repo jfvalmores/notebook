@@ -28,6 +28,7 @@ class App extends Component {
     const showSections = Boolean(this.state.notebook);
     const showPages = Boolean(this.state.notebook && this.state.section);
     const showEditor = Boolean(this.state.notebook && this.state.section && this.state.page);
+    console.log(showEditor);
 
     return (
       <AppContext.Provider value={{
@@ -47,7 +48,8 @@ class App extends Component {
                 reqPath={`${this.state.notebook}/${this.state.section}`} />
             }
             {showEditor &&
-              <PageContent />
+              <PageContent
+                content={this.state.content} />
             }
           </Box>
         </Sidenav>

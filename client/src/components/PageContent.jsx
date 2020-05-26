@@ -31,9 +31,12 @@ export default class PageContent extends Component {
   }
 
   render() {
+    const { content } = this.props;
+    console.log(content);
+
     return (
       <Editor
-        initialValue={this.context.appState.content}
+        value={content}
         apiKey={process.env.REACT_APP_TINYMCE_KEY}
         init={{
           selector: 'textarea',

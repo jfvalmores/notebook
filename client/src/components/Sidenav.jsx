@@ -52,11 +52,11 @@ const useStyles = makeStyles((theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
     transition: theme.transitions.create('margin', {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen,
     }),
+    padding: '10px 0',
     marginLeft: -drawerWidth,
   },
   contentShift: {
@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Sidenav(props) {
   const classes = useStyles();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const toggleDrawer = () => {
     setOpen(!open);

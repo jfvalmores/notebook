@@ -13,7 +13,6 @@ export default class PageContent extends Component {
     if (this._saveTimeout) clearTimeout(this._saveTimeout);
 
     this._saveTimeout = setTimeout(() => {
-      console.log('Content was updated:', content);
       this.handleUpdate({
         content
       });
@@ -32,7 +31,6 @@ export default class PageContent extends Component {
 
   render() {
     const { content } = this.props;
-    console.log(content);
 
     return (
       <Editor

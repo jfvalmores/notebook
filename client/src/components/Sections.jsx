@@ -29,6 +29,8 @@ export default class Sections extends BaseGrid {
     this.context.updateState({ section: _id });
 
     this._detailIntf.view(`${this.props.reqPath}/${_id}`, (data) => {
+      if (this.context.appState.section === _id) return;
+
       this.context.updateState({
         section: _id,
         page: '',

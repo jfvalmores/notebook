@@ -17,6 +17,8 @@ export default class Notebooks extends BaseGrid {
     const { _id } = notebook;
 
     this._detailIntf.view(`${_id}`, (data) => {
+      if (this.context.appState.notebook === _id) return;
+
       this.context.updateState({
         notebook: _id,
         section: '',

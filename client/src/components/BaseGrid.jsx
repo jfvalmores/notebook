@@ -64,7 +64,6 @@ export default class BaseGrid extends Component {
     switch (String(action).toUpperCase()) {
       case 'EDIT':
         this.setState({ selected: detail }, (state) => {
-          console.log(this.state);
           this.openModalForm();
         });
         break;

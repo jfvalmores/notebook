@@ -26,7 +26,7 @@ class DataGrid extends Component {
     this.props.onClick(item);
   }
 
-  componentWillReceiveProps(newProps) {
+  UNSAFE_componentWillReceiveProps(newProps) {
     if (String(newProps.sourceKey) === '') {
       this.setState({ selected: '' });
     }

@@ -64,6 +64,7 @@ const useStyles = makeStyles((theme) => ({
       easing: theme.transitions.easing.easeOut,
       duration: theme.transitions.duration.enteringScreen,
     }),
+    padding: '10px 0',
     marginLeft: 0,
   },
 }));

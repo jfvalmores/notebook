@@ -17,13 +17,29 @@ const ListContainer = styled.div`
 `;
 
 class DataGrid extends Component {
+  state = {
+    selected: '',
+  };
+
+  handleClick = (idx, item) => {
+    this.setState({ selected: idx });
+    this.props.onClick(item);
+  }
+
+  componentWillMount() {
+    this.setState({ selected: '' });
+  }
+
+  component
+
   renderList = () => (
     <List style={{ padding: 0 }}>
-      {this.props.list.map(item => (
+      {this.props.list.map((item, idx) => (
         <ListItem
           button
           key={item._id}
-          onClick={() => this.props.onClick(item)}
+          style={{ backgroundColor: (this.state.selected === idx ? 'lightgray' : 'inherit') }}
+          onClick={() => this.handleClick(idx, item)}
         >
           <ListItemIcon style={{ minWidth: 25 }}>
             {this.props.icon}

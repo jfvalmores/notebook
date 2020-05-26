@@ -14,15 +14,16 @@ const CustomWrapper = styled.div`
 
 export default class BaseGrid extends Component {
   static contextType = AppContext;
-  _attrName = '';
-  _title = '';
-  _mainIntf;
-  _detailIntf;
-  _hasCustomWrapper = false;
 
   constructor() {
     super();
     this.fn = new Utils();
+    this._attrName = '';
+    this._title = '';
+    this._mainIntf = '';
+    this._detailIntf = '';
+    this._hasCustomWrapper = false;
+
     this.state = {
       openModal: false,
       selected: {
@@ -120,7 +121,7 @@ export default class BaseGrid extends Component {
           color="primary"
           style={{ margin: 9 }}
           onClick={this.handleNewEntry}
-          startIcon={<MenuBookRoundedIcon />}
+          startIcon={this._icon || <MenuBookRoundedIcon fontSize="small" />}
         >
           Add {this._title}
         </Button>
@@ -131,7 +132,7 @@ export default class BaseGrid extends Component {
             actions={['Edit', 'Delete']}
             handleAction={this.handleAction}
             list={this.context.appState[this._attrName]}
-            icon={<MenuBookRoundedIcon fontSize="small" />}
+            icon={this._icon || <MenuBookRoundedIcon fontSize="small" />}
           />
         }
         <Modal

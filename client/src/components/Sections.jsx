@@ -1,12 +1,20 @@
+import React from 'react';
 import BaseGrid from './BaseGrid';
 import { Section, Page } from '../api';
+import CollectionsBookmarkRoundedIcon from '@material-ui/icons/CollectionsBookmarkRounded';
 
 export default class Sections extends BaseGrid {
-  _title = 'Section';
-  _attrName = 'sections';
-  _mainIntf = new Section();
-  _detailIntf = new Page();
-  _hasCustomWrapper = true;
+
+  constructor() {
+    super();
+
+    this._title = 'Section';
+    this._attrName = 'sections';
+    this._mainIntf = new Section();
+    this._detailIntf = new Page();
+    this._hasCustomWrapper = true;
+    this._icon = <CollectionsBookmarkRoundedIcon fontSize="small" />;
+  }
 
   getList = () => {
     if (String(this.context.appState.notebook) === '') return;

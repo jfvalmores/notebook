@@ -2,11 +2,16 @@ import BaseGrid from './BaseGrid';
 import { Notebook, Section, Page } from '../api';
 
 export default class Notebooks extends BaseGrid {
-  _title = 'Notebook';
-  _attrName = 'notebooks';
-  _mainIntf = new Notebook();
-  _detailIntf = new Section();
-  _subDetailIntf = new Page();
+
+  constructor() {
+    super();
+
+    this._title = 'Notebook';
+    this._attrName = 'notebooks';
+    this._mainIntf = new Notebook();
+    this._detailIntf = new Section();
+    this._subDetailIntf = new Page();
+  }
 
   setSelected = (notebook) => {
     const { _id } = notebook;

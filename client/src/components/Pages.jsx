@@ -1,11 +1,19 @@
+import React from 'react';
 import BaseGrid from './BaseGrid';
 import { Page } from '../api';
+import BookRoundedIcon from '@material-ui/icons/BookRounded';
 
 export default class Pages extends BaseGrid {
-  _title = 'Page';
-  _attrName = 'pages';
-  _mainIntf = new Page();
-  _hasCustomWrapper = true;
+
+  constructor() {
+    super();
+
+    this._title = 'Page';
+    this._attrName = 'pages';
+    this._mainIntf = new Page();
+    this._hasCustomWrapper = true;
+    this._icon = <BookRoundedIcon fontSize="small" />;
+  }
 
   getList = () => {
     if (String(this.context.appState.section) === '') return;
@@ -23,6 +31,7 @@ export default class Pages extends BaseGrid {
       if (!data) return;
 
       this.context.updateState({
+        page: _id,
         title: data.title,
         content: data.content || '',
       });

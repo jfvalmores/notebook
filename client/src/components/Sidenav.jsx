@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   Drawer,
   AppBar,
+  Button,
   Toolbar,
   Typography,
   IconButton,
@@ -95,9 +96,20 @@ export default function Sidenav(props) {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="subtitle1" noWrap>
+
+          <Typography variant="subtitle1">
             {props.title}
           </Typography>
+
+          <div style={{ width: '100%' }} />
+
+          <Button
+            size="small"
+            style={{ color: 'white' }}
+            onClick={props.handleSignIn}>
+            Sign In
+          </Button>
+
         </Toolbar>
       </AppBar>
       <Drawer

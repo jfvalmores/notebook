@@ -6,11 +6,13 @@ import Sections from './components/Sections';
 import Pages from './components/Pages';
 import PageContent from './components/PageContent';
 import Sidenav from './components/Sidenav';
+import SignInModal from './components/SignInModal';
 import { AppContext } from './AppContext';
 
 class App extends Component {
   state = {
     appTitle: 'Notebooks',
+    showSignIn: false,
     notebook: '',
     section: '',
     page: '',
@@ -38,6 +40,7 @@ class App extends Component {
       }}>
         <Sidenav
           title={this.state.appTitle}
+          handleSignIn={() => this.setState({ showSignIn: true })}
           menu={
             <Notebooks
               reqPath=""
@@ -61,6 +64,10 @@ class App extends Component {
             }
           </Box>
         </Sidenav>
+        <SignInModal
+          open={this.state.showSignIn}
+          handleClose={() => this.setState({ showSignIn: false })}
+        />
       </AppContext.Provider>
     );
   }

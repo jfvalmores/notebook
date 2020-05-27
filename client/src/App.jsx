@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Box } from '@material-ui/core';
 
+import Notebooks from './components/Notebooks';
 import Sections from './components/Sections';
 import Pages from './components/Pages';
 import PageContent from './components/PageContent';
@@ -9,6 +10,7 @@ import { AppContext } from './AppContext';
 
 class App extends Component {
   state = {
+    appTitle: 'Notebooks',
     notebook: '',
     section: '',
     page: '',
@@ -34,7 +36,14 @@ class App extends Component {
         appState: this.state,
         updateState: this.updateState
       }}>
-        <Sidenav notebookId={this.state.notebook}>
+        <Sidenav
+          title={this.state.appTitle}
+          menu={
+            <Notebooks
+              reqPath=""
+              sourceKey={this.state.notebookId} />
+          }
+        >
           <Box display="flex">
             {showSections &&
               <Sections

@@ -1,14 +1,14 @@
 import React from 'react';
 import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
-
-import Notebooks from './Notebooks';
+import { makeStyles } from '@material-ui/core/styles';
+import {
+  Drawer,
+  AppBar,
+  Toolbar,
+  Typography,
+  IconButton,
+} from '@material-ui/core';
 
 const drawerWidth = 240;
 
@@ -96,7 +96,7 @@ export default function Sidenav(props) {
             <MenuIcon />
           </IconButton>
           <Typography variant="subtitle1" noWrap>
-            Notebooks
+            {props.title}
           </Typography>
         </Toolbar>
       </AppBar>
@@ -109,9 +109,7 @@ export default function Sidenav(props) {
           paper: classes.drawerPaper,
         }}
       >
-        <Notebooks
-          reqPath=""
-          sourceKey={props.notebookId} />
+        {props.menu}
       </Drawer>
       <main
         className={clsx(classes.content, {

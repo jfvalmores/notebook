@@ -117,7 +117,6 @@ function Options(props) {
         {props.actions.map((option) => (
           <MenuItem
             key={option}
-            selected={option === 'Pyxis'}
             onClick={(e) => { handleClose(e); props.handleAction(option, props.item) }}>
             {option}
           </MenuItem>

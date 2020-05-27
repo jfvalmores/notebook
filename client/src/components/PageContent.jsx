@@ -3,6 +3,7 @@ import { Editor } from '@tinymce/tinymce-react';
 import { AppContext } from '../AppContext';
 import { Page } from '../api';
 
+
 export default class PageContent extends Component {
   static contextType = AppContext;
   _mainIntf = new Page();
@@ -35,6 +36,7 @@ export default class PageContent extends Component {
     return (
       <Editor
         value={content}
+        disabled={this.props.mode !== 'EDIT'}
         apiKey={process.env.REACT_APP_TINYMCE_KEY}
         init={{
           selector: 'textarea',

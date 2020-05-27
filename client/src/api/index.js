@@ -4,6 +4,7 @@ import "firebase/database";
 import Notebook from './Notebook';
 import Section from './Section';
 import Page from './Page';
+import Auth from './Auth';
 
 const initialize = () => {
   const firebaseConfig = {
@@ -25,4 +26,5 @@ export {
   Notebook,
   Section,
   Page,
+  Auth,
 };

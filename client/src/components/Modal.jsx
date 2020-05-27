@@ -9,6 +9,7 @@ import {
   DialogContentText,
 } from '@material-ui/core';
 
+
 export default class FormDialog extends Component {
   constructor(props) {
     super(props);
@@ -33,6 +34,7 @@ export default class FormDialog extends Component {
     return (
       <Dialog
         fullWidth
+        maxWidth="xs"
         open={this.props.open}
         onClose={this.props.handleCancel}
         aria-labelledby="form-dialog-title">

@@ -3,6 +3,7 @@ import BaseGrid from './BaseGrid';
 import { Page } from '../api';
 import BookRoundedIcon from '@material-ui/icons/BookRounded';
 
+
 export default class Pages extends BaseGrid {
 
   constructor(props) {

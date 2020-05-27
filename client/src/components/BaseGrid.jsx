@@ -5,7 +5,11 @@ import Utils from '../utils/Utils';
 import styled from 'styled-components';
 import MenuBookRoundedIcon from '@material-ui/icons/MenuBookRounded';
 import { AppContext } from '../AppContext';
-import { Button } from '@material-ui/core';
+import {
+  Button,
+  Typography
+} from '@material-ui/core';
+
 
 const CustomWrapper = styled.div`
   width: 100%;
@@ -115,7 +119,7 @@ export default class BaseGrid extends Component {
   renderMain() {
     return (
       <>
-        {this.context.appState.mode === 'EDIT' &&
+        {this.context.appState.mode === 'EDIT' ?
           <Button
             size="small"
             color="primary"
@@ -125,10 +129,15 @@ export default class BaseGrid extends Component {
           >
             Add {this._title}
           </Button>
+          :
+          <Typography variant="overline" style={{ padding: '0 15px' }}>
+            {`${this._title}s`}
+          </Typography>
         }
         {this.context.appState[this._attrName].length > 0 &&
           <DataGrid
             noWrapper
+            mode={this.props.mode}
             sourceKey={this.props.sourceKey}
             onClick={this.setSelected}
             actions={['Edit', 'Delete']}

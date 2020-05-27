@@ -11,6 +11,7 @@ import {
   IconButton,
 } from '@material-ui/core';
 
+
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -103,12 +104,27 @@ export default function Sidenav(props) {
 
           <div style={{ width: '100%' }} />
 
-          <Button
-            size="small"
-            style={{ color: 'white' }}
-            onClick={props.handleSignIn}>
-            Sign In
-          </Button>
+          {props.user ?
+            <>
+              <Typography variant="subtitle1">
+                {props.user}
+              </Typography>
+              <Button
+                size="small"
+                style={{ color: 'white' }}
+                onClick={props.handleLogout}>
+                Logout
+            </Button>
+            </>
+            :
+            <Button
+              size="small"
+              style={{ color: 'white' }}
+              onClick={props.handleSignIn}>
+              Sign In
+            </Button>
+          }
+
 
         </Toolbar>
       </AppBar>

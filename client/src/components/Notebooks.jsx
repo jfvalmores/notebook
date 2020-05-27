@@ -1,6 +1,7 @@
 import BaseGrid from './BaseGrid';
 import { Notebook, Section, Page } from '../api';
 
+
 export default class Notebooks extends BaseGrid {
 
   constructor(props) {

@@ -3,6 +3,7 @@ import BaseGrid from './BaseGrid';
 import { Section, Page } from '../api';
 import CollectionsBookmarkRoundedIcon from '@material-ui/icons/CollectionsBookmarkRounded';
 
+
 export default class Sections extends BaseGrid {
 
   constructor(props) {

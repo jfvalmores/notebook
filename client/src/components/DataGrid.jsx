@@ -11,6 +11,7 @@ import {
 import styled from 'styled-components';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 
+
 const ListContainer = styled.div`
   overflow-y: auto;
   max-height: calc(100vh - 127px);
@@ -49,11 +50,13 @@ class DataGrid extends Component {
           <ListItemText
             primary={item.title}
             classes={{ root: 'list-item' }} />
-          <Options
-            item={item}
-            actions={this.props.actions || []}
-            handleAction={this.props.handleAction}
-          />
+          {this.props.mode === 'EDIT' &&
+            <Options
+              item={item}
+              actions={this.props.actions || []}
+              handleAction={this.props.handleAction}
+            />
+          }
         </ListItem>
       ))}
     </List>

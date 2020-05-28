@@ -26,7 +26,6 @@ export default class Pages extends BaseGrid {
 
   setSelected = (page) => {
     const { _id } = page;
-    this.context.updateState({ page: _id });
 
     this._mainIntf.view(`${this.props.reqPath}/${_id}`, (data) => {
       if (!data) return;

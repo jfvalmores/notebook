@@ -27,7 +27,6 @@ export default class Sections extends BaseGrid {
 
   setSelected = (section) => {
     const { _id } = section;
-    this.context.updateState({ section: _id });
 
     this._detailIntf.view(`${this.props.reqPath}/${_id}`, (data) => {
       if (this.context.appState.section === _id) return;
@@ -35,6 +34,7 @@ export default class Sections extends BaseGrid {
       this.context.updateState({
         section: _id,
         page: '',
+        content: '',
         pages: this.fn.getArrayFromObjectKey(data)
       });
     });

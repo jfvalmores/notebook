@@ -1,6 +1,7 @@
 import * as firebase from 'firebase/app';
 import 'firebase/database';
 
+
 export default class Base {
   dbRef = firebase.database();
   dbName = '';

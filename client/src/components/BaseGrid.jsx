@@ -51,12 +51,14 @@ export default class BaseGrid extends Component {
     this._mainIntf.create(data, `${this.props.reqPath}`);
     this.closeModalForm();
     this.doPostSave();
+    this.getList();
   }
 
   handleUpdate = (data) => {
     if (!this.validateForm(data)) return;
     this._mainIntf.update(`${this.props.reqPath}/${data._id}`, data);
     this.closeModalForm();
+    this.getList();
   }
 
   handleNewEntry = () => {
@@ -74,6 +76,7 @@ export default class BaseGrid extends Component {
       case 'DELETE':
         this._mainIntf.remove(`${this.props.reqPath}/${detail._id}`);
         this.doPostRemove(detail._id);
+        this.getList();
         break;
       default:
         break;

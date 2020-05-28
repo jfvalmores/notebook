@@ -34,7 +34,6 @@ export default function SignInModal(props) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(state);
 
     const ok = (res) => {
       props.handleLoginSuccess(state);

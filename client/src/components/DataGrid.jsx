@@ -33,8 +33,6 @@ class DataGrid extends Component {
     }
   }
 
-  component
-
   renderList = () => (
     <List style={{ padding: 0 }}>
       {this.props.list.map((item, idx) => (

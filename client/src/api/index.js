@@ -6,6 +6,7 @@ import Section from './Section';
 import Page from './Page';
 import Auth from './Auth';
 
+
 const initialize = () => {
   const firebaseConfig = {
     apiKey: process.env.REACT_APP_API_KEY,
